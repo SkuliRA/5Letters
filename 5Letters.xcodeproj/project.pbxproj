@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0612F78629198B78005EDAFD /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0612F78529198B78005EDAFD /* SettingsViewController.swift */; };
+		0612F788291994D8005EDAFD /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0612F787291994D8005EDAFD /* SettingsManager.swift */; };
 		062685EB2912E32F00C0F67B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062685EA2912E32F00C0F67B /* AppDelegate.swift */; };
 		062685ED2912E32F00C0F67B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062685EC2912E32F00C0F67B /* SceneDelegate.swift */; };
 		062685EF2912E32F00C0F67B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062685EE2912E32F00C0F67B /* ViewController.swift */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0612F78529198B78005EDAFD /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		0612F787291994D8005EDAFD /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		062685E72912E32F00C0F67B /* 5Letters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 5Letters.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		062685EA2912E32F00C0F67B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		062685EC2912E32F00C0F67B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +68,8 @@
 				062685EC2912E32F00C0F67B /* SceneDelegate.swift */,
 				062685EE2912E32F00C0F67B /* ViewController.swift */,
 				0654FB0729145D8B00C178A3 /* MyTextField.swift */,
+				0612F78529198B78005EDAFD /* SettingsViewController.swift */,
+				0612F787291994D8005EDAFD /* SettingsManager.swift */,
 				0654FB0F2915054400C178A3 /* russian_nouns.txt */,
 				062685F02912E32F00C0F67B /* Main.storyboard */,
 				062685F52912E33000C0F67B /* LaunchScreen.storyboard */,
@@ -147,7 +153,9 @@
 			files = (
 				062685EF2912E32F00C0F67B /* ViewController.swift in Sources */,
 				062685EB2912E32F00C0F67B /* AppDelegate.swift in Sources */,
+				0612F788291994D8005EDAFD /* SettingsManager.swift in Sources */,
 				062685ED2912E32F00C0F67B /* SceneDelegate.swift in Sources */,
+				0612F78629198B78005EDAFD /* SettingsViewController.swift in Sources */,
 				0654FB0829145D8B00C178A3 /* MyTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -42,6 +42,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setFirstWord()
+        
         bannedLabel.isHidden = true
         
         downloadDictionary()
@@ -55,6 +57,23 @@ class ViewController: UIViewController {
         fifthTextField.delegate = self
         
     }
+    
+    func setFirstWord() {
+        let settingManager = SettingsManager()
+        if let text = settingManager.getSettings(key: .firstWorld), text != "" {
+            var index = text.index(text.startIndex, offsetBy: 0)
+            firstTextFild.text = String(text[index])
+            index = text.index(text.startIndex, offsetBy: 1)
+            secondTextField.text = String(text[index])
+            index = text.index(text.startIndex, offsetBy: 2)
+            thirdTextField.text = String(text[index])
+            index = text.index(text.startIndex, offsetBy: 3)
+            fourthTextField.text = String(text[index])
+            index = text.index(text.startIndex, offsetBy: 4)
+            fifthTextField.text = String(text[index])
+        }
+    }
+    
     
     @IBAction func grayColorButton(_ sender: UIButton) {
         activeTextField.backgroundColor = sender.backgroundColor
@@ -105,6 +124,7 @@ class ViewController: UIViewController {
         catch { print(error.localizedDescription) }
         
     }
+    
     
     @IBAction func refresh(_ sender: Any) {
         
