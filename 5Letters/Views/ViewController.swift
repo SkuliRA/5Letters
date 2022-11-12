@@ -27,39 +27,37 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var bannedLabel: UILabel!
     
+    // менеджер загрузки словаря в хранилище
+    let downloadManager = DownloadManager()
+   
+    // менеджер игры, содержит в себе класс - хранилище слов
+    let playManager = PlayManager()
+    
+    // менеджер настроек
+    let settingManager = SettingsManager()
+    
     var activeTextField = UITextField()
-    // двумерный массив всех слов из 5 букв
-    var arrBase: [[Character]] = []
-    // массив подсказок
-    var hintsArray: [String] = []
-    // словарь - ключ буква и количество ее вхождений в слове
-    var content: [Character : Int] = [:]
-    // словарь - ключ позиция, значение буква
-    var position: [Int: Character] = [:]
-    // буквы которых нет в слове
-    var bannedLetters: [Character : Int] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // установим первое слово из настроек
         setFirstWord()
         
         bannedLabel.isHidden = true
         
-        downloadDictionary()
-        
-        // Do any additional setup after loading the view.
+        // загрузим словарь в наш класс хранилище данных
+        downloadManager.downloadDictionary(dataStore: playManager.dataStore)
         
         firstTextFild.delegate = self
         secondTextField.delegate = self
         thirdTextField.delegate = self
         fourthTextField.delegate = self
         fifthTextField.delegate = self
-        
     }
     
     func setFirstWord() {
-        let settingManager = SettingsManager()
+        
         if let text = settingManager.getSettings(key: .firstWorld), text != "" {
             var index = text.index(text.startIndex, offsetBy: 0)
             firstTextFild.text = String(text[index])
@@ -87,51 +85,10 @@ class ViewController: UIViewController {
         activeTextField.backgroundColor = sender.backgroundColor
     }
     
-    func downloadDictionary() {
-        
-        let fileName = "russian_nouns" //name file
-        
-        let path = Bundle.main.url(forResource: fileName, withExtension: "txt")
-        
-        guard let path = path else { return }
-        
-        //        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].first {
-        //
-        //            let fileURL = dir.appendingPathComponent(file)
-        
-        // читаем и заполняем базовый массив
-        do {
-            let text = try String(contentsOf: path, encoding: .utf8)
-            let wordsArr = text.components(separatedBy: "\n")
-            
-            var arrFiveLet: [String] = []
-            
-            for element in wordsArr {
-                if element.count == 5 {
-                    arrFiveLet.append(element)
-                }
-            }
-            
-            // заполним двумерный массив символов словами
-            for element in arrFiveLet {
-                var wordArr: [Character] = []
-                for charact in element {
-                    wordArr.append(charact)
-                }
-                arrBase.append(wordArr)
-            }
-        }
-        catch { print(error.localizedDescription) }
-        
-    }
-    
-    
     @IBAction func refresh(_ sender: Any) {
         
-        hintsArray = []
-        content = [:]
-        position = [:]
-        bannedLetters = [:]
+        // обновим данные в нашем хранилище
+        playManager.refreshStore()
         
         bannedLabel.isHidden = true
         bannedLabel.text = "Исключенные буквы:"
@@ -160,103 +117,57 @@ class ViewController: UIViewController {
         
         fillFromTextFields()
         
-        hintsArray = []
+        // получим строку подсказок
+        let hintString = playManager.getHints()
         
-        for word in arrBase {
-            var contentCopy = content
-            var positionCopy = position
-            
-            var isBanned = false
-            for i in 0...4 {
-                // проверим на буквы которых нет в слове
-                if let _ = bannedLetters[word[i]] {
-                    isBanned = true
-                }
-                
-                // если есть забанненая буква, проверять дальше нет смысла
-                guard !isBanned else { continue }
-                
-                // проверка на позицию
-                if let value = positionCopy[i], value == word[i] {
-                    positionCopy.removeValue(forKey: i)
-                    // если известна буква из этой позиции то вхождения не проверяем
-                    continue
-                }
-                
-                // проверка на содержание
-                if let value = contentCopy[word[i]] {
-                    if value == 1 {
-                        contentCopy.removeValue(forKey: word[i])
-                    } else {
-                        contentCopy[word[i]] = value - 1
-                    }
-                }
-            }
-            // если оба словаря пустые, то можно добавить в подсказки
-            // добавляем его в подсказки
-            if contentCopy.count == 0 && positionCopy.count == 0 && !isBanned {
-                hintsArray.append(String(word))
-            }
-            
-        }
-        
+        // включим видимость лейбла с исключенными буквами
         bannedLabel.isHidden = false
-        // bannedLabel.text = "Исключенные буквы: " + bannedLetters.map {String($0) + " " + String($1)}
         
+        // заполним лейбл с исключенными буквами
         var bannedLettersString = ""
-        
-        for element in bannedLetters {
-            bannedLettersString = bannedLettersString + " " + String(element.key)
-        }
-        
+        bannedLettersString = playManager.getBannedLeters()
         bannedLabel.text = bannedLabel.text! + bannedLettersString.capitalized
         
-        let hintString = hintsArray.joined(separator: " ")
-        
+        // выведем в алер контроллере подсказки
         let alert = UIAlertController(title: "Подходящие слова", message: hintString, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Continue", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
+    // заполним массивы и словари из текст филдов
     func fillFromTextFields() {
         
-        position = [:]
-        content = [:]
+        var array: [(letter: String?, type: LetterType)] = []
         
-        fillDictionaries(textField: firstTextFild, bannedLetters: &bannedLetters, position: &position, content: &content, number: 0)
+        guard let type0 = checkLetterType(firstTextFild) else { return }
+        array.append((firstTextFild.text, type0))
         
-        fillDictionaries(textField: secondTextField, bannedLetters: &bannedLetters, position: &position, content: &content, number: 1)
+        guard let type1 = checkLetterType(secondTextField) else { return }
+        array.append((secondTextField.text, type1))
         
-        fillDictionaries(textField: thirdTextField, bannedLetters: &bannedLetters, position: &position, content: &content, number: 2)
+        guard let type2 = checkLetterType(thirdTextField) else { return }
+        array.append((thirdTextField.text, type2))
         
-        fillDictionaries(textField: fourthTextField, bannedLetters: &bannedLetters, position: &position, content: &content, number: 3)
+        guard let type3 = checkLetterType(fourthTextField) else { return }
+        array.append((fourthTextField.text, type3))
         
-        fillDictionaries(textField: fifthTextField, bannedLetters: &bannedLetters, position: &position, content: &content, number: 4)
+        guard let type4 = checkLetterType(fifthTextField) else { return }
+        array.append((fifthTextField.text, type4))
         
-        print(bannedLetters, content, position)
+        playManager.fillDictionaries(array)
         
     }
     
-    func  fillDictionaries(textField: UITextField, bannedLetters: inout [Character : Int], position: inout [Int: Character], content: inout [Character : Int], number: Int) {
-        
-        guard let text = textField.text, text != "" else { return }
-        
-        let char = Character(text.lowercased())
-        
-        if textField.backgroundColor == grayButton.backgroundColor {
-            bannedLetters[char] = 1
-        }
-        
-        if textField.backgroundColor == whiteButton.backgroundColor {
-            if let number = content[char] {
-                content[char] = number + 1
-            } else {
-                content[char] = 1
-            }
-        }
-        
-        if textField.backgroundColor == orangeButton.backgroundColor {
-            position[number] = char
+    func checkLetterType(_ textField: UITextField) -> LetterType? {
+        switch textField.backgroundColor {
+        case grayButton.backgroundColor:
+            return .except
+        case whiteButton.backgroundColor:
+            return .contained
+        case orangeButton.backgroundColor:
+            return .position
+        default:
+            return nil
         }
     }
     
