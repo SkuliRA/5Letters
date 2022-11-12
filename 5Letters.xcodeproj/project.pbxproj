@@ -14,6 +14,9 @@
 		062685EF2912E32F00C0F67B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062685EE2912E32F00C0F67B /* ViewController.swift */; };
 		062685F22912E32F00C0F67B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 062685F02912E32F00C0F67B /* Main.storyboard */; };
 		062685F72912E33000C0F67B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 062685F52912E33000C0F67B /* LaunchScreen.storyboard */; };
+		0634CEC2291FAA40009B2C06 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0634CEC1291FAA40009B2C06 /* DownloadManager.swift */; };
+		0634CEC4291FAC31009B2C06 /* PlayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0634CEC3291FAC31009B2C06 /* PlayManager.swift */; };
+		0634CEC9291FAE05009B2C06 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0634CEC8291FAE05009B2C06 /* DataStore.swift */; };
 		0654FB042914432E00C178A3 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0654FB032914432E00C178A3 /* Media.xcassets */; };
 		0654FB0829145D8B00C178A3 /* MyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0654FB0729145D8B00C178A3 /* MyTextField.swift */; };
 		0654FB102915054400C178A3 /* russian_nouns.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0654FB0F2915054400C178A3 /* russian_nouns.txt */; };
@@ -29,6 +32,9 @@
 		062685F12912E32F00C0F67B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		062685F62912E33000C0F67B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		062685F82912E33000C0F67B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0634CEC1291FAA40009B2C06 /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
+		0634CEC3291FAC31009B2C06 /* PlayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayManager.swift; sourceTree = "<group>"; };
+		0634CEC8291FAE05009B2C06 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		0654FB032914432E00C178A3 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		0654FB0729145D8B00C178A3 /* MyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTextField.swift; sourceTree = "<group>"; };
 		0654FB0F2915054400C178A3 /* russian_nouns.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = russian_nouns.txt; sourceTree = "<group>"; };
@@ -66,10 +72,9 @@
 			children = (
 				062685EA2912E32F00C0F67B /* AppDelegate.swift */,
 				062685EC2912E32F00C0F67B /* SceneDelegate.swift */,
-				062685EE2912E32F00C0F67B /* ViewController.swift */,
-				0654FB0729145D8B00C178A3 /* MyTextField.swift */,
-				0612F78529198B78005EDAFD /* SettingsViewController.swift */,
-				0612F787291994D8005EDAFD /* SettingsManager.swift */,
+				0634CEC7291FAD3C009B2C06 /* Model */,
+				0634CEC6291FAD19009B2C06 /* Views */,
+				0634CEC5291FACF4009B2C06 /* Controllers */,
 				0654FB0F2915054400C178A3 /* russian_nouns.txt */,
 				062685F02912E32F00C0F67B /* Main.storyboard */,
 				062685F52912E33000C0F67B /* LaunchScreen.storyboard */,
@@ -77,6 +82,34 @@
 				0654FB032914432E00C178A3 /* Media.xcassets */,
 			);
 			path = 5Letters;
+			sourceTree = "<group>";
+		};
+		0634CEC5291FACF4009B2C06 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0634CEC1291FAA40009B2C06 /* DownloadManager.swift */,
+				0634CEC3291FAC31009B2C06 /* PlayManager.swift */,
+				0612F787291994D8005EDAFD /* SettingsManager.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		0634CEC6291FAD19009B2C06 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				062685EE2912E32F00C0F67B /* ViewController.swift */,
+				0654FB0729145D8B00C178A3 /* MyTextField.swift */,
+				0612F78529198B78005EDAFD /* SettingsViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0634CEC7291FAD3C009B2C06 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0634CEC8291FAE05009B2C06 /* DataStore.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,7 +189,10 @@
 				0612F788291994D8005EDAFD /* SettingsManager.swift in Sources */,
 				062685ED2912E32F00C0F67B /* SceneDelegate.swift in Sources */,
 				0612F78629198B78005EDAFD /* SettingsViewController.swift in Sources */,
+				0634CEC4291FAC31009B2C06 /* PlayManager.swift in Sources */,
 				0654FB0829145D8B00C178A3 /* MyTextField.swift in Sources */,
+				0634CEC9291FAE05009B2C06 /* DataStore.swift in Sources */,
+				0634CEC2291FAA40009B2C06 /* DownloadManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

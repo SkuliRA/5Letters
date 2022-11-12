@@ -143,10 +143,10 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Исключенные буквы:" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cNN-nC-0AY">
-                                <rect key="frame" x="5" y="435" width="400" height="30"/>
+                                <rect key="frame" x="5" y="435" width="400" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="400" id="2si-RC-bVO"/>
-                                    <constraint firstAttribute="height" constant="30" id="n1i-se-EH7"/>
+                                    <constraint firstAttribute="height" constant="80" id="n1i-se-EH7"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" systemColor="systemGrayColor"/>
