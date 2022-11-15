@@ -8,7 +8,8 @@
 import Foundation
 
 enum KeysSettings: String {
-    case firstWorld = "firstWorld"
+    case firstWord = "firstWord"
+    case firstRun = "yes"
 }
 
 class SettingsManager {

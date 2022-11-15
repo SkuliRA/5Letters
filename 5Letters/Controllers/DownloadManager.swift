@@ -43,6 +43,5 @@ class DownloadManager {
         catch { print(error.localizedDescription) }
         
     }
-    
 
 }

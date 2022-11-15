@@ -9,6 +9,7 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 
+    @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var strartWordTField: UITextField!
     
     override func viewDidLoad() {
@@ -21,10 +22,22 @@ class SettingsViewController: UIViewController {
        
         if let text = strartWordTField.text, text.count == 5 {
             let settingManager = SettingsManager()
-            settingManager.saveSettings(key: .firstWorld, value: text)
+            settingManager.saveSettings(key: .firstWord, value: text)
         }
         
     }
     
     
+    @IBAction func CheckWordAction(_ sender: Any) {
+        
+        let coreDataManager = CoreDataManager()
+        
+        guard let text = strartWordTField.text else { return }
+        
+        if coreDataManager.checkWord(text) {
+            resultLabel.text = "есть"
+        } else {
+            resultLabel.text = "нет"
+        }
+    }
 }

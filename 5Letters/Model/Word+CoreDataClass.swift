@@ -9,6 +9,6 @@ import Foundation
 import CoreData
 
 
-public class WordL: NSManagedObject {
+public class Word: NSManagedObject {
 
 }

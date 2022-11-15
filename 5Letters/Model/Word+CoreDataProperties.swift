@@ -7,16 +7,17 @@
 import Foundation
 import CoreData
 
-extension WordL {
+extension Word {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<WordL> {
-        return NSFetchRequest<WordL>(entityName: "WordL")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Word> {
+        return NSFetchRequest<Word>(entityName: "Word")
     }
 
     @NSManaged public var fullWord: String?
 
 }
 
-extension WordL : Identifiable {
+extension Word : Identifiable {
 
 }
+

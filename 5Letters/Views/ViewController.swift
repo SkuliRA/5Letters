@@ -36,7 +36,11 @@ class ViewController: UIViewController {
     // менеджер настроек
     let settingManager = SettingsManager()
     
+    // менеджер работы с кор датой
+    let coreDataManager = CoreDataManager()
+    
     var activeTextField = UITextField()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +53,8 @@ class ViewController: UIViewController {
         // загрузим словарь в наш класс хранилище данных
         downloadManager.downloadDictionary(dataStore: playManager.dataStore)
         
+        //checkFirstRunning()
+    
         firstTextFild.delegate = self
         secondTextField.delegate = self
         thirdTextField.delegate = self
@@ -58,7 +64,7 @@ class ViewController: UIViewController {
     
     func setFirstWord() {
         
-        if let text = settingManager.getSettings(key: .firstWorld), text != "" {
+        if let text = settingManager.getSettings(key: .firstWord), text != "" {
             var index = text.index(text.startIndex, offsetBy: 0)
             firstTextFild.text = String(text[index])
             index = text.index(text.startIndex, offsetBy: 1)
@@ -72,6 +78,33 @@ class ViewController: UIViewController {
         }
     }
     
+    fileprivate func checkFirstRunning() {
+        // загрузим массив слов в кор дату если это первый запуск
+        if checkFirstRun() {
+            do {
+                let done = try coreDataManager.fromArrayToCoreData(playManager.dataStore.arrBase)
+                // если загрузка в кор дату прошла успешно, тогда установим в настройках
+                // что это не первый запуск
+                if done {
+                    settingManager.saveSettings(key: .firstRun, value: "no")
+                }
+                
+            } catch {
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+            
+        }
+    }
+    
+    func checkFirstRun() -> Bool {
+        
+        if let text = settingManager.getSettings(key: .firstRun), text == "no" {
+            return false
+        }
+    
+        return true
+    }
     
     @IBAction func grayColorButton(_ sender: UIButton) {
         activeTextField.backgroundColor = sender.backgroundColor

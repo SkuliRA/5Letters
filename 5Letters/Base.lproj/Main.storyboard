@@ -245,6 +245,24 @@
                                     <action selector="saveButton:" destination="rD3-VD-NMo" eventType="touchUpInside" id="YNb-SR-tWP"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eri-yD-nKK">
+                                <rect key="frame" x="170" y="471" width="75" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="CheckWord">
+                                    <color key="baseForegroundColor" red="0.29814225630000002" green="0.82999921089999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="CheckWordAction:" destination="rD3-VD-NMo" eventType="touchUpInside" id="sPY-ce-pkZ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="result" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gX-2J-OOt">
+                                <rect key="frame" x="186" y="534" width="43" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.096123579259999994" green="0.82999921089999995" blue="0.0" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="s6O-ln-gWW"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -264,6 +282,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="6sW-tq-cq2"/>
                     <connections>
+                        <outlet property="resultLabel" destination="8gX-2J-OOt" id="0Kx-mC-y1h"/>
                         <outlet property="strartWordTField" destination="GA5-W5-hue" id="UKX-d8-bDu"/>
                     </connections>
                 </viewController>
