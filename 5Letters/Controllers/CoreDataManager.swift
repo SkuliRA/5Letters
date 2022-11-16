@@ -95,11 +95,12 @@ class CoreDataManager: NSObject, ObservableObject {
         }
     }
     
-    func searchHints(content contentDict: [Character : Int], position positionDict: [Int: Character], banned bannedDict: [Character : Int]) -> String {
+    func searchHints(content contentDict: [Character : Int], position positionDict: [Int: Character], banned bannedDict: [Character : Int], excludePos excludeDict: [Int: [Character]]) -> String {
         
         var hints = ""
         
-        let predicateStr = getPredicateString(content: contentDict, position: positionDict, banned: bannedDict)
+        // получим условие для выборки из базы
+        let predicateStr = getPredicateString(content: contentDict, position: positionDict, banned: bannedDict, excludePos: excludeDict)
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Word")
         fetchRequest.predicate = NSPredicate(format: predicateStr)
@@ -154,7 +155,12 @@ class CoreDataManager: NSObject, ObservableObject {
                 
                 // если массив пустой значит все буквы найдены в слове, добавляем в подсказки
                 if contentCopy.isEmpty {
-                    hints = hints + word.fullWord! + ", "
+                    
+                    if hints != "" {
+                        hints = hints + ", "
+                    }
+                    
+                    hints = hints + word.fullWord!
                 }
                 
             }
@@ -165,7 +171,7 @@ class CoreDataManager: NSObject, ObservableObject {
         return hints
     }
     
-    func getPredicateString(content contentDict: [Character : Int], position positionDict: [Int: Character], banned bannedDict: [Character : Int]) -> String {
+    func getPredicateString(content contentDict: [Character : Int], position positionDict: [Int: Character], banned bannedDict: [Character : Int], excludePos excludeDict: [Int: [Character]]) -> String {
         
         var predicateString = ""
         
@@ -187,6 +193,24 @@ class CoreDataManager: NSObject, ObservableObject {
                 
                 predicateString = (predicateString != "" ? predicateString + " AND ": predicateString)
                 predicateString = predicateString + "letter\(i + 1) = '\(pos)'"
+            }
+        }
+        
+        for i in 0...4 {
+            
+            var repeatLetter: [Character: Bool] = [:]
+            
+            if let lettersArr = excludeDict[i] {
+                
+                for letter in lettersArr {
+                    
+                    if repeatLetter[letter] == nil {
+                        predicateString = (predicateString != "" ? predicateString + " AND ": predicateString)
+                        predicateString = predicateString + "letter\(i + 1) <> '\(letter)'"
+                        repeatLetter[letter] = true
+                    }
+                    
+                }
             }
         }
         

@@ -17,5 +17,7 @@ class DataStore {
     var position: [Int: Character] = [:]
     // буквы которых нет в слове
     var bannedLetters: [Character : Int] = [:]
+    // буквы которые нужно исключить на позициях
+    var excludePos: [Int : [Character]] = [:]
     
 }

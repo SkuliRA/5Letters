@@ -174,7 +174,7 @@ class ViewController: UIViewController {
         
         guard let type0 = checkLetterType(firstTextFild) else { return }
         array.append((firstTextFild.text, type0))
-        
+
         guard let type1 = checkLetterType(secondTextField) else { return }
         array.append((secondTextField.text, type1))
         
@@ -192,6 +192,7 @@ class ViewController: UIViewController {
     }
     
     func checkLetterType(_ textField: UITextField) -> LetterType? {
+       
         switch textField.backgroundColor {
         case grayButton.backgroundColor:
             return .except
