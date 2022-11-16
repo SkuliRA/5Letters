@@ -143,9 +143,8 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Исключенные буквы:" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cNN-nC-0AY">
-                                <rect key="frame" x="5" y="435" width="400" height="80"/>
+                                <rect key="frame" x="5" y="435" width="404" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="400" id="2si-RC-bVO"/>
                                     <constraint firstAttribute="height" constant="80" id="n1i-se-EH7"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
@@ -177,8 +176,11 @@
                             <constraint firstAttribute="trailing" secondItem="yAN-cc-eHX" secondAttribute="trailing" id="5DW-EA-9HL"/>
                             <constraint firstItem="yAN-cc-eHX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="BDf-Ce-Fp0"/>
                             <constraint firstAttribute="bottom" secondItem="yAN-cc-eHX" secondAttribute="bottom" id="GwJ-5N-7Kp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cNN-nC-0AY" secondAttribute="trailing" constant="5" id="INe-oC-LMb"/>
                             <constraint firstItem="8GJ-QE-IO7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="63" id="IfL-Ak-TNt"/>
+                            <constraint firstItem="cNN-nC-0AY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="PIq-aS-1Po"/>
                             <constraint firstItem="O7e-gZ-dy3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="TJR-lH-4Qe"/>
+                            <constraint firstItem="cNN-nC-0AY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="UbH-bc-fSt"/>
                             <constraint firstItem="O7e-gZ-dy3" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="bRP-hk-pcG"/>
                             <constraint firstItem="o8B-mE-CzV" firstAttribute="top" secondItem="cMt-Fv-5mD" secondAttribute="bottom" constant="24" id="cvr-G8-tTQ"/>
                             <constraint firstItem="cMt-Fv-5mD" firstAttribute="top" secondItem="8GJ-QE-IO7" secondAttribute="bottom" constant="25.5" id="dH5-1G-vRQ"/>
@@ -194,6 +196,7 @@
                             <constraint firstItem="8GJ-QE-IO7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="wg0-MS-3vZ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8GJ-QE-IO7" secondAttribute="trailing" constant="5" id="y9X-5t-MIw"/>
                             <constraint firstItem="cNN-nC-0AY" firstAttribute="top" secondItem="o8B-mE-CzV" secondAttribute="bottom" constant="40" id="zUN-ZL-89X"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cNN-nC-0AY" secondAttribute="trailing" constant="5" id="zfY-hS-7uq"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="yeH-Tm-6QW"/>
@@ -263,6 +266,17 @@
                                 <color key="textColor" red="0.096123579259999994" green="0.82999921089999995" blue="0.0" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eNj-Zx-ujD">
+                                <rect key="frame" x="5" y="281" width="146" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Clear Data Base"/>
+                                <connections>
+                                    <action selector="clearDBButton:" destination="rD3-VD-NMo" eventType="touchUpInside" id="dui-Re-cpy"/>
+                                    <action selector="saveButton:" destination="rD3-VD-NMo" eventType="touchUpInside" id="zzq-s1-nSj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="s6O-ln-gWW"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

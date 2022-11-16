@@ -2,5 +2,10 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="21G217" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Word" representedClassName=".Word" syncable="YES" codeGenerationType="class">
         <attribute name="fullWord" optional="YES" attributeType="String"/>
+        <attribute name="letter1" optional="YES" attributeType="String"/>
+        <attribute name="letter2" optional="YES" attributeType="String"/>
+        <attribute name="letter3" optional="YES" attributeType="String"/>
+        <attribute name="letter4" optional="YES" attributeType="String"/>
+        <attribute name="letter5" optional="YES" attributeType="String"/>
     </entity>
 </model>

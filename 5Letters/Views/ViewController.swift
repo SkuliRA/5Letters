@@ -53,7 +53,7 @@ class ViewController: UIViewController {
         // загрузим словарь в наш класс хранилище данных
         downloadManager.downloadDictionary(dataStore: playManager.dataStore)
         
-        //checkFirstRunning()
+        checkFirstRunning()
     
         firstTextFild.delegate = self
         secondTextField.delegate = self

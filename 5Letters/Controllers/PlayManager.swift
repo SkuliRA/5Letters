@@ -56,48 +56,49 @@ class PlayManager {
     
     func getHints() -> String {
         
-        // массив подсказок
-        var hintsArray: [String] = []
+        // получим подсказки из Core Data
+        let coreDataManager = CoreDataManager()
+        let hints = coreDataManager.searchHints(content: dataStore.content, position: dataStore.position, banned: dataStore.bannedLetters)
         
-        for word in dataStore.arrBase {
-            var contentCopy = dataStore.content
-            var positionCopy = dataStore.position
-            
-            var isBanned = false
-            for i in 0...4 {
-                // проверим на буквы которых нет в слове
-                if let _ = dataStore.bannedLetters[word[i]] {
-                    isBanned = true
-                }
-                
-                // если есть забанненая буква, проверять дальше нет смысла
-                guard !isBanned else { continue }
-                
-                // проверка на позицию
-                if let value = positionCopy[i], value == word[i] {
-                    positionCopy.removeValue(forKey: i)
-                    // если известна буква из этой позиции то вхождения не проверяем
-                    continue
-                }
-                
-                // проверка на содержание
-                if let value = contentCopy[word[i]] {
-                    if value == 1 {
-                        contentCopy.removeValue(forKey: word[i])
-                    } else {
-                        contentCopy[word[i]] = value - 1
-                    }
-                }
-            }
-            // если оба словаря пустые, то можно добавить в подсказки
-            // добавляем его в подсказки
-            if contentCopy.count == 0 && positionCopy.count == 0 && !isBanned {
-                hintsArray.append(String(word))
-            }
-            
-        }
+        return hints
         
-        return hintsArray.joined(separator: " ")
+//        for word in dataStore.arrBase {
+//            var contentCopy = dataStore.content
+//            var positionCopy = dataStore.position
+//
+//            var isBanned = false
+//            for i in 0...4 {
+//                // проверим на буквы которых нет в слове
+//                if let _ = dataStore.bannedLetters[word[i]] {
+//                    isBanned = true
+//                }
+//
+//                // если есть забанненая буква, проверять дальше нет смысла
+//                guard !isBanned else { continue }
+//
+//                // проверка на позицию
+//                if let value = positionCopy[i], value == word[i] {
+//                    positionCopy.removeValue(forKey: i)
+//                    // если известна буква из этой позиции то вхождения не проверяем
+//                    continue
+//                }
+//
+//                // проверка на содержание
+//                if let value = contentCopy[word[i]] {
+//                    if value == 1 {
+//                        contentCopy.removeValue(forKey: word[i])
+//                    } else {
+//                        contentCopy[word[i]] = value - 1
+//                    }
+//                }
+//            }
+//            // если оба словаря пустые, то можно добавить в подсказки
+//            // добавляем его в подсказки
+//            if contentCopy.count == 0 && positionCopy.count == 0 && !isBanned {
+//                hintsArray.append(String(word))
+//            }
+//
+//        }
     }
     
     func getBannedLeters() -> String {

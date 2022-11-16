@@ -17,6 +17,10 @@
 		0634CEC2291FAA40009B2C06 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0634CEC1291FAA40009B2C06 /* DownloadManager.swift */; };
 		0634CEC4291FAC31009B2C06 /* PlayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0634CEC3291FAC31009B2C06 /* PlayManager.swift */; };
 		0634CEC9291FAE05009B2C06 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0634CEC8291FAE05009B2C06 /* DataStore.swift */; };
+		063A2159292173C8001E70BD /* FiveLetters.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 063A215629217394001E70BD /* FiveLetters.xcdatamodeld */; };
+		06470DAF292129780007F698 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DAE292129780007F698 /* CoreDataManager.swift */; };
+		06470DB1292136990007F698 /* Word+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DB0292136990007F698 /* Word+CoreDataClass.swift */; };
+		06470DB3292136C90007F698 /* Word+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DB2292136C90007F698 /* Word+CoreDataProperties.swift */; };
 		0654FB042914432E00C178A3 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0654FB032914432E00C178A3 /* Media.xcassets */; };
 		0654FB0829145D8B00C178A3 /* MyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0654FB0729145D8B00C178A3 /* MyTextField.swift */; };
 		0654FB102915054400C178A3 /* russian_nouns.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0654FB0F2915054400C178A3 /* russian_nouns.txt */; };
@@ -35,6 +39,10 @@
 		0634CEC1291FAA40009B2C06 /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		0634CEC3291FAC31009B2C06 /* PlayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayManager.swift; sourceTree = "<group>"; };
 		0634CEC8291FAE05009B2C06 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		063A215729217394001E70BD /* FiveLetters.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FiveLetters.xcdatamodel; sourceTree = "<group>"; };
+		06470DAE292129780007F698 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		06470DB0292136990007F698 /* Word+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Word+CoreDataClass.swift"; sourceTree = "<group>"; };
+		06470DB2292136C90007F698 /* Word+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Word+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		0654FB032914432E00C178A3 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		0654FB0729145D8B00C178A3 /* MyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTextField.swift; sourceTree = "<group>"; };
 		0654FB0F2915054400C178A3 /* russian_nouns.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = russian_nouns.txt; sourceTree = "<group>"; };
@@ -87,6 +95,7 @@
 		0634CEC5291FACF4009B2C06 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				06470DAE292129780007F698 /* CoreDataManager.swift */,
 				0634CEC1291FAA40009B2C06 /* DownloadManager.swift */,
 				0634CEC3291FAC31009B2C06 /* PlayManager.swift */,
 				0612F787291994D8005EDAFD /* SettingsManager.swift */,
@@ -108,6 +117,9 @@
 			isa = PBXGroup;
 			children = (
 				0634CEC8291FAE05009B2C06 /* DataStore.swift */,
+				06470DB0292136990007F698 /* Word+CoreDataClass.swift */,
+				06470DB2292136C90007F698 /* Word+CoreDataProperties.swift */,
+				063A215629217394001E70BD /* FiveLetters.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -170,6 +182,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				063A2159292173C8001E70BD /* FiveLetters.xcdatamodeld in Resources */,
 				062685F72912E33000C0F67B /* LaunchScreen.storyboard in Resources */,
 				0654FB042914432E00C178A3 /* Media.xcassets in Resources */,
 				0654FB102915054400C178A3 /* russian_nouns.txt in Resources */,
@@ -191,8 +204,11 @@
 				0612F78629198B78005EDAFD /* SettingsViewController.swift in Sources */,
 				0634CEC4291FAC31009B2C06 /* PlayManager.swift in Sources */,
 				0654FB0829145D8B00C178A3 /* MyTextField.swift in Sources */,
+				06470DB3292136C90007F698 /* Word+CoreDataProperties.swift in Sources */,
+				06470DAF292129780007F698 /* CoreDataManager.swift in Sources */,
 				0634CEC9291FAE05009B2C06 /* DataStore.swift in Sources */,
 				0634CEC2291FAA40009B2C06 /* DownloadManager.swift in Sources */,
+				06470DB1292136990007F698 /* Word+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +428,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		063A215629217394001E70BD /* FiveLetters.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				063A215729217394001E70BD /* FiveLetters.xcdatamodel */,
+			);
+			currentVersion = 063A215729217394001E70BD /* FiveLetters.xcdatamodel */;
+			path = FiveLetters.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 062685DF2912E32F00C0F67B /* Project object */;
 }

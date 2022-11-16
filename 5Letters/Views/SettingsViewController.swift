@@ -27,6 +27,14 @@ class SettingsViewController: UIViewController {
         
     }
     
+    @IBAction func clearDBButton(_ sender: UIButton) {
+        let coreDataManager = CoreDataManager()
+        
+        coreDataManager.clearDataBase()
+        
+        let settingManager = SettingsManager()
+        settingManager.saveSettings(key: .firstRun, value: "yes")
+    }
     
     @IBAction func CheckWordAction(_ sender: Any) {
         
